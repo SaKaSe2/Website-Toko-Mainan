@@ -10,3 +10,4 @@ Dibuat dengan **HTML + TailwindCSS + JavaScript** agar ringan, responsif, dan ga
 - 🗂️ **Koleksi spesial** (edisi terbatas)
 - 💬 **Testimoni pelanggan**
 - 📱 **Form order via WhatsApp**
+- 🎨 Desain modern dengan tema gelap + aksen ungu
