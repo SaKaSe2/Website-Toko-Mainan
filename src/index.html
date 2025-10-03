@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Childhood — Toko Mainan</title>
+
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Tailwind CDN-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#7C3AED" /* purple */,
+              accent: "#FDE68A" /* warm yellow */,
+              surface: "#0b1220" /* deep surface */,
+              card: "#0f1724" /* card background */,
+              muted: "#94a3b8" /* muted text */,
+            },
+            fontFamily: {
+              primary: ["Nunito", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --max-width: 1400px; /* dinaikkan dari 1100px ke 1400px */
+      }
+
+      /* override untuk selector Tailwind yang dipakai di HTML*/
+      @media (min-width: 1024px) {
+        .max-w-\[var\(--max-width\)\] {
+          max-width: var(--max-width) !important;
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(2, 6, 23, 0.6);
+      }
+      .theme-transition {
+        transition: background-color 180ms ease, color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .focus-ring:focus-visible {
+        outline: 3px solid rgba(124, 58, 237, 0.16);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-gray-100 theme-transition">
+    <!--NAVBAR-->
+    <header class="bg-card shadow-sm theme-transition">
+      <div
+        class="max-w-[var(--max-width)] mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="#hero" class="flex items-center gap-3">
+          <div
+            class="w-11 h-11 md:w-16 md:h-16 rounded-md overflow-hidden bg-gray-900"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/SaKaSe2/img@main/imgwebsite.png"
+              alt="Logo Childhood"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <div>
+            <h1 class="text-lg font-extrabold">Childhood</h1>
+            <p class="text-sm text-muted">Toko Mainan</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-24">
+          <a
+            href="#produk"
+            class="text-lg md:text-lg font-medium hover:text-primary"
+            >Produk</a
+          >
+          <a
+            href="#tentang"
+            class="text-lg md:text-lg font-medium hover:text-primary"
+            >Tentang</a
+          >
+          <a
+            href="#testimoni"
+            class="text-lg md:text-lg font-medium hover:text-primary"
+            >Testimoni</a
+          >
+          <a
+            href="#kontak"
+            class="text-lg md:text-lg font-medium hover:text-primary"
+            >Kontak</a
+          >
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button
+            id="btn-login"
+            type="button"
+            class="px-4 py-2 rounded-md border border-primary text-primary font-semibold bg-transparent transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+          >
+            Masuk
+          </button>
+
+          <button
+            id="btn-buy"
+            type="button"
+            class="px-4 py-2 rounded-md bg-primary text-white font-semibold transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+          >
+            Beli Sekarang
+          </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          id="btnMenu"
+          class="md:hidden p-2 rounded-md border border-gray-700 text-gray-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden px-6 pb-6">
+        <a href="#products" class="block py-2 text-gray-200">Produk</a>
+        <a href="#about" class="block py-2 text-gray-200">Tentang</a>
+        <a href="#testimonials" class="block py-2 text-gray-200">Testimoni</a>
+        <a href="#contact" class="block py-2 text-gray-200">Kontak</a>
+        <div class="pt-3 flex gap-3">
+          <a
+            href="#"
+            class="flex-1 text-center py-2 border rounded-md text-gray-200 border-gray-700"
+            >Masuk</a
+          >
+          <a
+            href="#kontak"
+            class="flex-1 text-center py-2 bg-primary text-white rounded-md"
+            >Beli</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!--Hero-->
+    <section id="hero" class="py-7 md:py-16">
+      <div
+        class="max-w-[var(--max-width)] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      >
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold leading-tight">
+            Childhood — <span class="text-primary">Toko Mainan</span>
+          </h2>
+          <p class="mt-4 text-muted text-sm md:text-lg">
+            Mainan berkualitas, aman, dan membawa kenangan. Temukan koleksi
+            klasik dan modern untuk segala usia — dari balita sampai kolektor.
+          </p>
+
+          <div class="mt-5 md:mt-6 flex items-center gap-16 md:gap-8">
+            <a
+              href="#produk"
+              class="px-4 py-3 md:px-6 md:py-3 rounded-md bg-primary text-white font-semibold shadow focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >Lihat Produk</a
+            >
+            <a
+              href="#tentang"
+              class="px-4 py-3 md:px-6 md:py-3 rounded-md border border-gray-700 text-gray-200 focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >Tentang Kami</a
+            >
+          </div>
+        </div>
+
+        <div class="order-first md:order-last">
+          <div class="bg-card rounded-2xl p-4 shadow-lg">
+            <img
+              src="https://codingbee.id/wp-content/uploads/2023/11/mainan-edukasi-untuk-anak.jpg"
+              alt="Mainan"
+              class="w-full rounded-lg object-cover h-71 md:h-72"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Tentang-->
+    <section id="tentang" class="py-12 bg-card theme-transition">
+      <div class="max-w-[var(--max-width)] mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold">Tentang Childhood</h3>
+            <p class="mt-3 text-muted md:text-lg text-sm">
+              Childhood berdiri sejak 2025 dengan misi menghadirkan mainan aman,
+              edukatif, dan penuh cerita. Saya memilih produk yang berkualitas,
+              ramah lingkungan, dan mendukung tumbuh kembang anak.
+            </p>
+
+            <ul class="mt-3 space-y-1 text-gray-200 text-sm md:text-lg">
+              <li>• Kurasi mainan dari brand terpercaya</li>
+              <li>• Standar keamanan mainan internasional</li>
+              <li>• Paket kado custom & layanan gift wrap</li>
+            </ul>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              src="https://1.bp.blogspot.com/-2406SUSbT68/WvhaigKi_YI/AAAAAAAADdI/kGkJ61s-bdwv9RrHGTRMjeKDjwWbdXKjQCLcBGAs/s1600/desain%2Btoko%2Bmainan%2Banak%2B4.jpg"
+              alt="Toko 1"
+              class="rounded-lg w-full h-40 md:h-56 lg:h-62 object-cover"
+            />
+            <img
+              src="https://tse3.mm.bing.net/th/id/OIP.jfqDE4Nicbhap4BNs2GljAHaEd?rs=1&pid=ImgDetMain&o=7&rm=3"
+              alt="Toko 2"
+              class="rounded-lg w-full h-40 md:h-56 lg:h-62 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Produk-->
+    <section id="produk" class="py-12">
+      <div class="max-w-[var(--max-width)] mx-auto px-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl md:text-2xl font-bold">Produk Unggulan</h3>
+          <a href="#" class="text-sm md:text-lg hover:text-primary"
+            >Lihat Semua &rarr;</a
+          >
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!--Etalase 1-->
+          <article
+            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
+          >
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/91K5JOBomKL._SL1500_.jpg"
+              alt="Etalase 1"
+              class="rounded-md object-cover h-48 w-full"
+            />
+            <h4 class="mt-4 font-semibold">Lego City</h4>
+            <p class="text-sm text-muted mt-1">
+              Lego City dapat di dibentuk menjadi perkotaan mini, cocok untuk
+              mengembangkan kreativitas.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">Rp320.000</div>
+              <a
+                href="#kontak"
+                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                >Beli</a
+              >
+            </div>
+          </article>
+
+          <!--Etalase 2-->
+          <article
+            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
+          >
+            <img
+              src="https://th.bing.com/th/id/R.ba9d805464bdcb194ce9a3241f18ba4b?rik=v1wEM1rh0zFwYQ&riu=http%3a%2f%2flascalemodel.com%2fcdn%2fshop%2fproducts%2fPharactp1_1200x760_e74b8f8f-ab3c-4fee-b175-620e4767e8ba.webp%3fv%3d1676493865&ehk=FK2iQQvLG1%2fcnF1AUSzkrFKuOSUxnrzgbhNFSUv%2bMWM%3d&risl=&pid=ImgRaw&r=0"
+              alt="Etalase 2"
+              class="rounded-md object-cover h-48 w-full"
+            />
+            <h4 class="mt-4 font-semibold">Gundam Pharact</h4>
+            <p class="text-sm text-muted mt-1">
+              Gundam Limited Edition, cocok untuk dikoleksi dan banyak di incar
+              kolektor.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">Rp3.225.000</div>
+              <a
+                href="#kontak"
+                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                >Beli</a
+              >
+            </div>
+          </article>
+
+          <!--Etalase 3-->
+          <article
+            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
+          >
+            <img
+              src="https://i.ytimg.com/vi/mT1XF5DTWeY/maxresdefault.jpg"
+              alt="Etalase 3"
+              class="rounded-md object-cover h-48 w-full"
+            />
+            <h4 class="mt-4 font-semibold">Mainan Masak-masakan</h4>
+            <p class="text-sm text-muted mt-1">
+              Maianan Masak-masakan dengan full set, bisa dimainkan oleh banyak
+              orang.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">Rp156.000</div>
+              <a
+                href="#kontak"
+                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                >Beli</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--Koleksi-->
+    <section id="Koleksi" class="py-12 bg-card">
+      <div class="max-w-[var(--max-width)] mx-auto px-6">
+        <h3 class="text-2xl font-bold">Koleksi Spesial</h3>
+        <p class="text-muted mt-2">
+          Koleksi premium edisi terbatas yang jarang ditemui.
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <img
+            src="https://tse1.mm.bing.net/th/id/OIP.CMgYDdB_lOHXVwNLiUmGNgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Koleksi 1"
+            class="rounded-lg object-cover w-full h-44 md:h-64 lg:h-71 cursor-pointer"
+          />
+          <img
+            src="https://tse2.mm.bing.net/th/id/OIP.57sWx5umwNjNAtsVqpmlUAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Koleksi 2"
+            class="rounded-lg object-cover w-full h-44 md:h-64 lg:h-71 cursor-pointer"
+          />
+          <img
+            src="https://cdn.oneesports.id/cdn-data/sites/2/2025/01/Pokemon_TCG_PrismaticEvolutions_Special_Illustration_Rare_Glaceon_ex-1.jpg"
+            alt="Koleksi 3"
+            class="rounded-lg object-cover w-full h-44 md:h-64 lg:h-71 cursor-pointer"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!--Testimoni-->
+    <section id="testimoni" class="py-12">
+      <div class="max-w-[var(--max-width)] mx-auto px-6">
+        <h3 class="text-2xl font-bold">Apa kata pelanggan?</h3>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <blockquote class="bg-card p-4 rounded-lg shadow-sm">
+            <p class="text-gray-200">
+              "Anak saya suka sekali legonya. Pengiriman cepat dan kemasan
+              aman."
+            </p>
+            <cite class="block mt-3 text-sm text-muted">— Nabil, Sidoarjo</cite>
+          </blockquote>
+          <blockquote class="bg-card p-4 rounded-lg shadow-sm">
+            <p class="text-gray-200">
+              "Gunadamnya sesuai dengan deskripsi dan kualitasnya baik. Worth
+              it!"
+            </p>
+            <cite class="block mt-3 text-sm text-muted">— Rifqi, Sidoarjo</cite>
+          </blockquote>
+          <blockquote class="bg-card p-4 rounded-lg shadow-sm">
+            <p class="text-gray-200">
+              "Layanannya ramah dan membantu untuk memberikan rekomendasi mainan
+              yang cocok."
+            </p>
+            <cite class="block mt-3 text-sm text-muted">— Zaky, Malang</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!--Kontak-->
+    <section
+      id="kontak"
+      class="py-12 bg-gradient-to-r from-surface to-card theme-transition"
+    >
+      <div
+        class="max-w-[var(--max-width)] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      >
+        <div>
+          <h3 class="text-2xl font-bold">Order & Kontak</h3>
+          <p class="mt-2 text-muted">
+            Untuk pengecekan pemesanan, hubungi saya melalui formulir yang
+            diberikan di samping.
+          </p>
+
+          <ul class="mt-10 space-y-5 text-gray-200">
+            <li>📱 WA: <strong>0859-5435-3772</strong></li>
+            <li>🟣 Alamat: Jl. Dau No.10, Malang</li>
+            <li>🕗 Jam buka: Senin–Sabtu, 08:00–21:00</li>
+          </ul>
+        </div>
+
+        <!--Pendafataran-->
+        <form id="Pendaftaran" class="bg-card p-6 rounded-lg shadow-sm">
+          <label class="block text-sm font-medium">Nama</label>
+          <input
+            id="custName"
+            required
+            class="mt-1 w-full rounded-md border border-gray-700 px-3 py-2 bg-gray-900 text-gray-100"
+            placeholder="Nama lengkap"
+          />
+
+          <label class="block text-sm font-medium mt-3">Pesan / Produk</label>
+          <input
+            id="custMessage"
+            required
+            class="mt-1 w-full rounded-md border border-gray-700 px-3 py-2 bg-gray-900 text-gray-100"
+            placeholder="Contoh: Gundam Pharact"
+          />
+
+          <label class="block text-sm font-medium mt-3">Nomor WA</label>
+          <input
+            id="custPhone"
+            required
+            class="mt-1 w-full rounded-md border border-gray-700 px-3 py-2 bg-gray-900 text-gray-100"
+            placeholder="08xx"
+          />
+
+          <div class="mt-4 flex gap-3">
+            <button
+              id="sendWaBtn"
+              type="submit"
+              class="flex-1 py-2 rounded-md bg-primary text-white font-semibold transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              Kirim Pesan
+            </button>
+            <button
+              type="reset"
+              class="flex-1 py-2 rounded-md border border-gray-700 text-gray-200 transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              Reset
+            </button>
+          </div>
+
+          <p id="Notifikasi" class="mt-3 text-sm text-rose-400 hidden"></p>
+        </form>
+
+        <!--pengiriman ke WhatsApp-->
+        <script>
+          (function () {
+            const form = document.getElementById("Pendaftaran");
+            const notice = document.getElementById("Notifikasi");
+
+            const waTarget = "6285954353772";
+
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+              notice.classList.add("hidden");
+              const name = document.getElementById("custName").value.trim();
+              const msg = document.getElementById("custMessage").value.trim();
+              const phone = (
+                document.getElementById("custPhone").value || ""
+              ).trim();
+
+              if (!name || !msg) {
+                notice.textContent = "Nama dan Pesan wajib diisi.";
+                notice.classList.remove("hidden");
+                return;
+              }
+
+              // Susun pesan
+              let text = `Halo Childhood\n`;
+              text += `Nama: ${name}\n`;
+              if (phone) text += `Nomor Pemesan: ${phone}\n`;
+              text += `Pesan: ${msg}\n\n`;
+              text += `Mohon infokan estimasi stok & harga. Terima kasih.`;
+
+              const waUrl = `https://wa.me/${waTarget}?text=${encodeURIComponent(
+                text
+              )}`;
+              window.open(waUrl, "_blank");
+            });
+          })();
+        </script>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="bg-card border-t border-gray-800 mt-12">
+      <div
+        class="max-w-[var(--max-width)] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <p class="text-sm text-gray-300">© Childhood 2025 — Toko Mainan.</p>
+        <div class="flex items-center gap-4">
+          <a
+            href="#"
+            class="group inline-flex flex-col items-start text-sm text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 rounded"
+          >
+            <span>Kebijakan Privasi</span>
+            <span
+              class="block w-full h-[3px] mt-1 bg-gradient-to-r from-[#7C3AED] to-[#a106a1] transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300 origin-up"
+            ></span>
+          </a>
+
+          <a class="text-2xl text-muted">
+            <span>|</span>
+            <span class="block w-full h-[2px] mt-2"></span>
+          </a>
+
+          <a
+            href="#"
+            class="group inline-flex flex-col items-start text-sm text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 rounded"
+          >
+            <span>Syarat &amp; Ketentuan</span>
+            <span
+              class="block w-full h-[3px] mt-1 bg-gradient-to-r from-[#7C3AED] to-[#a106a1] transform scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100 transition-transform duration-300 origin-up"
+            ></span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById("btnMenu");
+      const mobile = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => mobile.classList.toggle("hidden"));
+    </script>
+  </body>
+</html>
