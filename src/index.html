@@ -20,11 +20,11 @@
         theme: {
           extend: {
             colors: {
-              primary: "#7C3AED" /* purple */,
-              accent: "#FDE68A" /* warm yellow */,
-              surface: "#0b1220" /* deep surface */,
-              card: "#0f1724" /* card background */,
-              muted: "#94a3b8" /* muted text */,
+              primary: "#7C3AED",
+              accent: "#FDE68A",
+              surface: "#0b1220",
+              card: "#0f1724",
+              muted: "#94a3b8",
             },
             fontFamily: {
               primary: ["Nunito", "sans-serif"],
@@ -36,10 +36,9 @@
 
     <style>
       :root {
-        --max-width: 1400px; /* dinaikkan dari 1100px ke 1400px */
+        --max-width: 1400px;
       }
 
-      /* override untuk selector Tailwind yang dipakai di HTML*/
       @media (min-width: 1024px) {
         .max-w-\[var\(--max-width\)\] {
           max-width: var(--max-width) !important;
@@ -56,6 +55,7 @@
         transform: translateY(-6px);
         box-shadow: 0 14px 30px rgba(2, 6, 23, 0.6);
       }
+      
       .theme-transition {
         transition: background-color 180ms ease, color 180ms ease,
           box-shadow 180ms ease;
@@ -64,6 +64,15 @@
       .focus-ring:focus-visible {
         outline: 3px solid rgba(124, 58, 237, 0.16);
         outline-offset: 3px;
+      }
+
+      /* Loading animation */
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .animate-spin {
+        animation: spin 1s linear infinite;
       }
     </style>
   </head>
@@ -250,88 +259,32 @@
       </div>
     </section>
 
-    <!--Produk-->
+    <!--Produk - SECTION INI YANG DIUBAH UNTUK FETCH API-->
     <section id="produk" class="py-12">
       <div class="max-w-[var(--max-width)] mx-auto px-6">
         <div class="flex items-center justify-between">
-          <h3 class="text-xl md:text-2xl font-bold">Produk Unggulan</h3>
-          <a href="#" class="text-sm md:text-lg hover:text-primary"
-            >Lihat Semua &rarr;</a
+          <div>
+            <h3 class="text-xl md:text-2xl font-bold">Produk Unggulan</h3>
+            <p class="text-sm text-muted mt-1">Data diambil dari API secara real-time</p>
+          </div>
+          <button 
+            onclick="fetchProducts()" 
+            class="text-sm md:text-base hover:text-primary flex items-center gap-2"
           >
+            <span>🔄</span>
+            <span>Refresh</span>
+          </button>
         </div>
 
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!--Etalase 1-->
-          <article
-            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
-          >
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/I/91K5JOBomKL._SL1500_.jpg"
-              alt="Etalase 1"
-              class="rounded-md object-cover h-48 w-full"
-            />
-            <h4 class="mt-4 font-semibold">Lego City</h4>
-            <p class="text-sm text-muted mt-1">
-              Lego City dapat di dibentuk menjadi perkotaan mini, cocok untuk
-              mengembangkan kreativitas.
-            </p>
-            <div class="mt-4 flex items-center justify-between">
-              <div class="text-lg font-bold">Rp320.000</div>
-              <a
-                href="#kontak"
-                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >Beli</a
-              >
-            </div>
-          </article>
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden mt-6 text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
+          <p class="mt-4 text-muted">Memuat produk...</p>
+        </div>
 
-          <!--Etalase 2-->
-          <article
-            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
-          >
-            <img
-              src="https://th.bing.com/th/id/R.ba9d805464bdcb194ce9a3241f18ba4b?rik=v1wEM1rh0zFwYQ&riu=http%3a%2f%2flascalemodel.com%2fcdn%2fshop%2fproducts%2fPharactp1_1200x760_e74b8f8f-ab3c-4fee-b175-620e4767e8ba.webp%3fv%3d1676493865&ehk=FK2iQQvLG1%2fcnF1AUSzkrFKuOSUxnrzgbhNFSUv%2bMWM%3d&risl=&pid=ImgRaw&r=0"
-              alt="Etalase 2"
-              class="rounded-md object-cover h-48 w-full"
-            />
-            <h4 class="mt-4 font-semibold">Gundam Pharact</h4>
-            <p class="text-sm text-muted mt-1">
-              Gundam Limited Edition, cocok untuk dikoleksi dan banyak di incar
-              kolektor.
-            </p>
-            <div class="mt-4 flex items-center justify-between">
-              <div class="text-lg font-bold">Rp3.225.000</div>
-              <a
-                href="#kontak"
-                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >Beli</a
-              >
-            </div>
-          </article>
-
-          <!--Etalase 3-->
-          <article
-            class="bg-card rounded-xl p-4 card-hover transition-transform cursor-pointer"
-          >
-            <img
-              src="https://i.ytimg.com/vi/mT1XF5DTWeY/maxresdefault.jpg"
-              alt="Etalase 3"
-              class="rounded-md object-cover h-48 w-full"
-            />
-            <h4 class="mt-4 font-semibold">Mainan Masak-masakan</h4>
-            <p class="text-sm text-muted mt-1">
-              Maianan Masak-masakan dengan full set, bisa dimainkan oleh banyak
-              orang.
-            </p>
-            <div class="mt-4 flex items-center justify-between">
-              <div class="text-lg font-bold">Rp156.000</div>
-              <a
-                href="#kontak"
-                class="px-12 py-1.5 rounded-md bg-primary text-white text-sm focus-ring transition transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >Beli</a
-              >
-            </div>
-          </article>
+        <!-- Products Container - Akan diisi oleh JavaScript -->
+        <div id="products-container" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Data produk akan dimuat di sini oleh fetch-products.js -->
         </div>
       </div>
     </section>
@@ -460,44 +413,6 @@
 
           <p id="Notifikasi" class="mt-3 text-sm text-rose-400 hidden"></p>
         </form>
-
-        <!--pengiriman ke WhatsApp-->
-        <script>
-          (function () {
-            const form = document.getElementById("Pendaftaran");
-            const notice = document.getElementById("Notifikasi");
-
-            const waTarget = "6285954353772";
-
-            form.addEventListener("submit", function (e) {
-              e.preventDefault();
-              notice.classList.add("hidden");
-              const name = document.getElementById("custName").value.trim();
-              const msg = document.getElementById("custMessage").value.trim();
-              const phone = (
-                document.getElementById("custPhone").value || ""
-              ).trim();
-
-              if (!name || !msg) {
-                notice.textContent = "Nama dan Pesan wajib diisi.";
-                notice.classList.remove("hidden");
-                return;
-              }
-
-              // Susun pesan
-              let text = `Halo Childhood\n`;
-              text += `Nama: ${name}\n`;
-              if (phone) text += `Nomor Pemesan: ${phone}\n`;
-              text += `Pesan: ${msg}\n\n`;
-              text += `Mohon infokan estimasi stok & harga. Terima kasih.`;
-
-              const waUrl = `https://wa.me/${waTarget}?text=${encodeURIComponent(
-                text
-              )}`;
-              window.open(waUrl, "_blank");
-            });
-          })();
-        </script>
       </div>
     </section>
 
@@ -536,11 +451,50 @@
       </div>
     </footer>
 
+    <!-- SCRIPT WHATSAPP FORM -->
     <script>
-      // Mobile menu toggle
+      (function () {
+        const form = document.getElementById("Pendaftaran");
+        const notice = document.getElementById("Notifikasi");
+        const waTarget = "6285954353772";
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          notice.classList.add("hidden");
+          const name = document.getElementById("custName").value.trim();
+          const msg = document.getElementById("custMessage").value.trim();
+          const phone = (
+            document.getElementById("custPhone").value || ""
+          ).trim();
+
+          if (!name || !msg) {
+            notice.textContent = "Nama dan Pesan wajib diisi.";
+            notice.classList.remove("hidden");
+            return;
+          }
+
+          let text = `Halo Childhood\n`;
+          text += `Nama: ${name}\n`;
+          if (phone) text += `Nomor Pemesan: ${phone}\n`;
+          text += `Pesan: ${msg}\n\n`;
+          text += `Mohon infokan estimasi stok & harga. Terima kasih.`;
+
+          const waUrl = `https://wa.me/${waTarget}?text=${encodeURIComponent(
+            text
+          )}`;
+          window.open(waUrl, "_blank");
+        });
+      })();
+    </script>
+
+    <!-- MOBILE MENU TOGGLE -->
+    <script>
       const btn = document.getElementById("btnMenu");
       const mobile = document.getElementById("mobileMenu");
       btn.addEventListener("click", () => mobile.classList.toggle("hidden"));
     </script>
+
+    <!-- IMPORT FETCH API SCRIPT - LETAK DI AKHIR -->
+    <script src="fetch-products.js"></script>
   </body>
 </html>
