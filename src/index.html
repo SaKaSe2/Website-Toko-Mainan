@@ -259,14 +259,21 @@
       </div>
     </section>
 
-    <!--Produk - SECTION INI YANG DIUBAH UNTUK FETCH API-->
+    <!-- SECTION PRODUK - IMPLEMENTASI FETCH API -->
     <section id="produk" class="py-12">
       <div class="max-w-[var(--max-width)] mx-auto px-6">
+        <!-- 
+          HEADER SECTION
+          Button refresh untuk reload data dari API
+         Onclick memanggil fungsi fetchProducts() dari fetch-products.js
+        -->
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-xl md:text-2xl font-bold">Produk Unggulan</h3>
+            <!-- Indikator bahwa data real-time dari API -->
             <p class="text-sm text-muted mt-1">Data diambil dari API secara real-time</p>
           </div>
+          <!-- Button untuk re-fetch data (refresh) -->
           <button 
             onclick="fetchProducts()" 
             class="text-sm md:text-base hover:text-primary flex items-center gap-2"
@@ -276,18 +283,34 @@
           </button>
         </div>
 
-        <!-- Loading State -->
+        <!-- 
+          LOADING STATE
+          Ditampilkan saat fetch API sedang berjalan
+          Memberikan feedback ke user bahwa data sedang dimuat
+        -->
         <div id="loading-state" class="hidden mt-6 text-center py-12">
           <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
           <p class="mt-4 text-muted">Memuat produk...</p>
         </div>
 
-        <!-- Products Container - Akan diisi oleh JavaScript -->
+        <!-- 
+          ID: products-container
+          - Ini adalah container yang akan diisi oleh JavaScript
+          - Data produk di-generate dinamis oleh fungsi displayProducts()
+          - innerHTML akan diisi dengan card produk dari API
+        -->
         <div id="products-container" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Data produk akan dimuat di sini oleh fetch-products.js -->
+          <!-- 
+            Proses:
+            1. fetchProducts() mengambil data dari API
+            2. displayProducts() me-loop array produk
+            3. createProductCard() generate HTML untuk tiap produk
+            4. HTML di-inject ke container ini dengan innerHTML
+          -->
         </div>
       </div>
     </section>
+    <!-- END OF FETCH API SECTION -->
 
     <!--Koleksi-->
     <section id="Koleksi" class="py-12 bg-card">
@@ -494,7 +517,7 @@
       btn.addEventListener("click", () => mobile.classList.toggle("hidden"));
     </script>
 
-    <!-- IMPORT FETCH API SCRIPT - LETAK DI AKHIR -->
+    <!-- IMPORT FETCH API SCRIPT -->
     <script src="fetch-products.js"></script>
   </body>
 </html>
